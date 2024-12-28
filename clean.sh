@@ -9,7 +9,6 @@ then
   if [ "$1" == "all" ]; then
 	clean_prebuilt
 	clean
-	git reset --hard
   elif [ "$1" == "lite" ]; then
     clean_temp
     clean_external

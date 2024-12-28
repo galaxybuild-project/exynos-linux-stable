@@ -145,3 +145,6 @@ kernel/configs/android-*.cfg
 
 # KSU
 drivers/kernelsu
+
+# Failed patch
+*.rej

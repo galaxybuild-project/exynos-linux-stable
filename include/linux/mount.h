@@ -71,6 +71,9 @@ struct vfsmount {
 #endif
 	int mnt_flags;
 	void *data;
+#ifdef CONFIG_KSU_SUSFS
+	u64 android_kabi_reserved4;
+#endif
 };
 
 struct file; /* forward dec */

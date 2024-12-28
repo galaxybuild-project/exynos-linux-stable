@@ -1,23 +1,23 @@
 #!/bin/bash
 
-export PATH=/home/$USER/Android/Toolchains/clang/bin:/home/$USER/Android/Toolchains/clang/lib:${PATH}
-export CLANG_TRIPLE=/home/$USER/Android/Toolchains/clang/bin/aarch64-linux-gnu-
-export CROSS_COMPILE=/home/$USER/Android/Toolchains/clang/bin/aarch64-linux-gnu-
-export CROSS_COMPILE_ARM32=/home/$USER/Android/Toolchains/clang/bin/arm-linux-gnueabi-
-export CC=/home/$USER/Android/Toolchains/clang/bin/clang
-export REAL_CC=/home/$USER/Android/Toolchains/clang/bin/clang
-export LD=/home/$USER/Android/Toolchains/clang/bin/ld.lld
-export AR=/home/$USER/Android/Toolchains/clang/bin/llvm-ar
-export NM=/home/$USER/Android/Toolchains/clang/bin/llvm-nm
-export OBJCOPY=/home/$USER/Android/Toolchains/clang/bin/llvm-objcopy
-export OBJDUMP=/home/$USER/Android/Toolchains/clang/bin/llvm-objdump
-export READELF=/home/$USER/Android/Toolchains/clang/bin/llvm-readelf
-export STRIP=/home/$USER/Android/Toolchains/clang/bin/llvm-strip
+export PATH=/home/$USER/galaxybuild-project/Toolchains/clang-r522817/bin:/home/$USER/galaxybuild-project/Toolchains/clang-r522817/lib:${PATH}
+export CLANG_TRIPLE=/home/$USER/galaxybuild-project/Toolchains/clang/bin/aarch64-linux-gnu-
+export CROSS_COMPILE=/home/$USER/galaxybuild-project/Toolchains/clang/bin/aarch64-linux-gnu-
+export CROSS_COMPILE_ARM32=/home/$USER/galaxybuild-project/Toolchains/clang/bin/arm-linux-gnueabi-
+export CC=/home/$USER/galaxybuild-project/Toolchains/clang-r522817/bin/clang
+export REAL_CC=/home/$USER/galaxybuild-project/Toolchains/clang-r522817/bin/clang
+export LD=/home/$USER/galaxybuild-project/Toolchains/clang-r522817/bin/ld.lld
+export AR=/home/$USER/galaxybuild-project/Toolchains/clang-r522817/bin/llvm-ar
+export NM=/home/$USER/galaxybuild-project/Toolchains/clang-r522817/bin/llvm-nm
+export OBJCOPY=/home/$USER/galaxybuild-project/Toolchains/clang-r522817/bin/llvm-objcopy
+export OBJDUMP=/home/$USER/galaxybuild-project/Toolchains/clang-r522817/bin/llvm-objdump
+export READELF=/home/$USER/galaxybuild-project/Toolchains/clang-r522817/bin/llvm-readelf
+export STRIP=/home/$USER/galaxybuild-project/Toolchains/clang-r522817/bin/llvm-strip
 export LLVM=1 && export LLVM_IAS=1
 export KALLSYMS_EXTRA_PASS=1
 
 export ARCH=arm64 && export SUBARCH=arm64
-ZIP_DIR="/home/$USER/Android/Kernel/Zip"
+ZIP_DIR="/home/$USER/galaxybuild-project/xxtr-zip"
 KERNEL_NAME="Kernel"
 DTB_NAME="Dtb"
 CUR_DIR=$PWD
@@ -71,8 +71,9 @@ clean() {
 }
 
 patch_kernelsu() {
-		printf "Enabling KernelSU\n"
+		printf "Enabling KernelSU (NEXT)\n"
 		sed -i 's/# CONFIG_KSU is not set/CONFIG_KSU=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+		sed -i 's/# CONFIG_KSU_SUSFS is not set/CONFIG_KSU_SUSFS=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
 		KERNEL_NAME="$KERNEL_NAME-ksu"
 }
 
