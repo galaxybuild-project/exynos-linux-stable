@@ -71,6 +71,9 @@ struct vfsmount {
 #endif
 	int mnt_flags;
 	void *data;
+#ifdef CONFIG_KSU_SUSFS
+	u64 susfs_orig_mnt_id;
+#endif
 };
 
 struct file; /* forward dec */
