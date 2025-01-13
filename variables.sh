@@ -1,18 +1,18 @@
 #!/bin/bash
 
-export PATH=$(pwd)/toolchain/clang-17/bin:$(pwd)/toolchain/clang-17/lib:${PATH}
+export PATH=$(pwd)/toolchain/clang-20/bin:$(pwd)/toolchain/clang-20/lib:${PATH}
 export CLANG_TRIPLE=$(pwd)/toolchain/clang-13/bin/aarch64-linux-gnu-
 export CROSS_COMPILE=$(pwd)/toolchain/clang-13/bin/aarch64-linux-gnu-
 export CROSS_COMPILE_ARM32=$(pwd)/toolchain/clang-13/bin/arm-linux-gnueabi-
-export CC=$(pwd)/toolchain/clang-17/bin/clang
-export REAL_CC=$(pwd)/toolchain/clang-17/bin/clang
-export LD=$(pwd)/toolchain/clang-17/bin/ld.lld
-export AR=$(pwd)/toolchain/clang-17/bin/llvm-ar
-export NM=$(pwd)/toolchain/clang-17/bin/llvm-nm
-export OBJCOPY=$(pwd)/toolchain/clang-17/bin/llvm-objcopy
-export OBJDUMP=$(pwd)/toolchain/clang-17/bin/llvm-objdump
-export READELF=$(pwd)/toolchain/clang-17/bin/llvm-readelf
-export STRIP=$(pwd)/toolchain/clang-17/bin/llvm-strip
+export CC=$(pwd)/toolchain/clang-20/bin/clang
+export REAL_CC=$(pwd)/toolchain/clang-20/bin/clang
+export LD=$(pwd)/toolchain/clang-20/bin/ld.lld
+export AR=$(pwd)/toolchain/clang-20/bin/llvm-ar
+export NM=$(pwd)/toolchain/clang-20/bin/llvm-nm
+export OBJCOPY=$(pwd)/toolchain/clang-20/bin/llvm-objcopy
+export OBJDUMP=$(pwd)/toolchain/clang-20/bin/llvm-objdump
+export READELF=$(pwd)/toolchain/clang-20/bin/llvm-readelf
+export STRIP=$(pwd)/toolchain/clang-20/bin/llvm-strip
 export LLVM=1 && export LLVM_IAS=1
 export KALLSYMS_EXTRA_PASS=1
 
@@ -40,7 +40,7 @@ dts_erofs() {
 
 clean_external() {
 	cd $CUR_DIR
-	rm -rf .*-fetch-lock drivers/kernelsu/.check net/wireguard/.check
+	rm -rf .*-fetch-lock drivers/kernelsu/.check
 }
 
 clean_temp() {
