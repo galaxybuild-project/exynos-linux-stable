@@ -1,23 +1,23 @@
 #!/bin/bash
 
-export PATH=/home/$USER/galaxybuild-project/Toolchains/clang-r522817/bin:/home/$USER/galaxybuild-project/Toolchains/clang-r522817/lib:${PATH}
-export CLANG_TRIPLE=/home/$USER/galaxybuild-project/Toolchains/clang/bin/aarch64-linux-gnu-
-export CROSS_COMPILE=/home/$USER/galaxybuild-project/Toolchains/clang/bin/aarch64-linux-gnu-
-export CROSS_COMPILE_ARM32=/home/$USER/galaxybuild-project/Toolchains/clang/bin/arm-linux-gnueabi-
-export CC=/home/$USER/galaxybuild-project/Toolchains/clang-r522817/bin/clang
-export REAL_CC=/home/$USER/galaxybuild-project/Toolchains/clang-r522817/bin/clang
-export LD=/home/$USER/galaxybuild-project/Toolchains/clang-r522817/bin/ld.lld
-export AR=/home/$USER/galaxybuild-project/Toolchains/clang-r522817/bin/llvm-ar
-export NM=/home/$USER/galaxybuild-project/Toolchains/clang-r522817/bin/llvm-nm
-export OBJCOPY=/home/$USER/galaxybuild-project/Toolchains/clang-r522817/bin/llvm-objcopy
-export OBJDUMP=/home/$USER/galaxybuild-project/Toolchains/clang-r522817/bin/llvm-objdump
-export READELF=/home/$USER/galaxybuild-project/Toolchains/clang-r522817/bin/llvm-readelf
-export STRIP=/home/$USER/galaxybuild-project/Toolchains/clang-r522817/bin/llvm-strip
+export PATH=$(pwd)/toolchain/clang-17/bin:$(pwd)/toolchain/clang-17/lib:${PATH}
+export CLANG_TRIPLE=$(pwd)/toolchain/clang-13/bin/aarch64-linux-gnu-
+export CROSS_COMPILE=$(pwd)/toolchain/clang-13/bin/aarch64-linux-gnu-
+export CROSS_COMPILE_ARM32=$(pwd)/toolchain/clang-13/bin/arm-linux-gnueabi-
+export CC=$(pwd)/toolchain/clang-17/bin/clang
+export REAL_CC=$(pwd)/toolchain/clang-17/bin/clang
+export LD=$(pwd)/toolchain/clang-17/bin/ld.lld
+export AR=$(pwd)/toolchain/clang-17/bin/llvm-ar
+export NM=$(pwd)/toolchain/clang-17/bin/llvm-nm
+export OBJCOPY=$(pwd)/toolchain/clang-17/bin/llvm-objcopy
+export OBJDUMP=$(pwd)/toolchain/clang-17/bin/llvm-objdump
+export READELF=$(pwd)/toolchain/clang-17/bin/llvm-readelf
+export STRIP=$(pwd)/toolchain/clang-17/bin/llvm-strip
 export LLVM=1 && export LLVM_IAS=1
 export KALLSYMS_EXTRA_PASS=1
 
 export ARCH=arm64 && export SUBARCH=arm64
-ZIP_DIR="/home/$USER/galaxybuild-project/xxtr-zip"
+ZIP_DIR="$(pwd)/xxtr-zip"
 KERNEL_NAME="Kernel"
 DTB_NAME="Dtb"
 CUR_DIR=$PWD
@@ -71,10 +71,13 @@ clean() {
 }
 
 patch_kernelsu() {
-		printf "Enabling KernelSU (NEXT)\n"
-		sed -i 's/# CONFIG_KSU is not set/CONFIG_KSU=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
-		sed -i 's/# CONFIG_KSU_SUSFS is not set/CONFIG_KSU_SUSFS=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
-		KERNEL_NAME="$KERNEL_NAME-ksu"
+        printf "Enabling KernelSU (NEXT)\n"
+        sed -i 's/# CONFIG_KSU is not set/CONFIG_KSU=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+        sed -i 's/# CONFIG_KSU_SUSFS is not set/CONFIG_KSU_SUSFS=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+        sed -i 's/# CONFIG_KPROBES is not set/CONFIG_KPROBES=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+        sed -i 's/# CONFIG_KSU_SUSFS_SUS_SU is not set/CONFIG_KSU_SUSFS_SUS_SU=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+        sed -i 's/# KSU_SUSFS_HAS_MAGIC_MOUNT is not set/KSU_SUSFS_HAS_MAGIC_MOUNT=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+        KERNEL_NAME="$KERNEL_NAME-ksu"
 }
 
 patch_wifi() {

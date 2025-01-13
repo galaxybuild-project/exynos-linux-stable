@@ -1,6 +1,6 @@
 #!/bin/bash
 
 printf "Zipping\n"
-ZIP_DIR="/home/$USER/galaxybuild-project/xxtr-zip"
+ZIP_DIR="$(pwd)/xxtr-zip"
 cd $ZIP_DIR
 ./zip.sh
