@@ -90,6 +90,7 @@ patch_kernelsu() {
     sed -i 's/# CONFIG_KSU_SUSFS_OPEN_REDIRECT is not set/CONFIG_KSU_SUSFS_OPEN_REDIRECT=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
 
     KERNEL_NAME="$KERNEL_NAME-ksu"
+	curl -sL https://raw.githubusercontent.com/galaxybuild-project/tools/refs/heads/main/Scripts/KernelSU-SuSFS.sh | bash
 }
 
 patch_wifi() {
