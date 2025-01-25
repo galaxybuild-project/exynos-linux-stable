@@ -71,13 +71,25 @@ clean() {
 }
 
 patch_kernelsu() {
-        printf "Enabling KernelSU (NEXT)\n"
-        sed -i 's/# CONFIG_KSU is not set/CONFIG_KSU=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
-        sed -i 's/# CONFIG_KSU_SUSFS is not set/CONFIG_KSU_SUSFS=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
-        sed -i 's/# CONFIG_KPROBES is not set/CONFIG_KPROBES=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
-        sed -i 's/# CONFIG_KSU_SUSFS_SUS_SU is not set/CONFIG_KSU_SUSFS_SUS_SU=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
-        sed -i 's/# KSU_SUSFS_HAS_MAGIC_MOUNT is not set/KSU_SUSFS_HAS_MAGIC_MOUNT=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
-        KERNEL_NAME="$KERNEL_NAME-ksu"
+    printf "Enabling KernelSU and SuSFS\n"
+    sed -i 's/# CONFIG_KSU is not set/CONFIG_KSU=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+    sed -i 's/# CONFIG_KSU_SUSFS is not set/CONFIG_KSU_SUSFS=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+    sed -i 's/# CONFIG_KSU_SUSFS_HAS_MAGIC_MOUNT is not set/CONFIG_KSU_SUSFS_HAS_MAGIC_MOUNT=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+    sed -i 's/# CONFIG_KSU_SUSFS_SUS_PATH is not set/CONFIG_KSU_SUSFS_SUS_PATH=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+    sed -i 's/# CONFIG_KSU_SUSFS_SUS_MOUNT is not set/CONFIG_KSU_SUSFS_SUS_MOUNT=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+    sed -i 's/# CONFIG_KSU_SUSFS_AUTO_ADD_SUS_KSU_DEFAULT_MOUNT is not set/CONFIG_KSU_SUSFS_AUTO_ADD_SUS_KSU_DEFAULT_MOUNT=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+    sed -i 's/# CONFIG_KSU_SUSFS_AUTO_ADD_SUS_BIND_MOUNT is not set/CONFIG_KSU_SUSFS_AUTO_ADD_SUS_BIND_MOUNT=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+    sed -i 's/# CONFIG_KSU_SUSFS_SUS_KSTAT is not set/CONFIG_KSU_SUSFS_SUS_KSTAT=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+    sed -i 's/# CONFIG_KSU_SUSFS_SUS_OVERLAYFS is not set/CONFIG_KSU_SUSFS_SUS_OVERLAYFS=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+    sed -i 's/# CONFIG_KSU_SUSFS_TRY_UMOUNT is not set/CONFIG_KSU_SUSFS_TRY_UMOUNT=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+    sed -i 's/# CONFIG_KSU_SUSFS_AUTO_ADD_TRY_UMOUNT_FOR_BIND_MOUNT is not set/CONFIG_KSU_SUSFS_AUTO_ADD_TRY_UMOUNT_FOR_BIND_MOUNT=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+    sed -i 's/# CONFIG_KSU_SUSFS_SPOOF_UNAME is not set/CONFIG_KSU_SUSFS_SPOOF_UNAME=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+    sed -i 's/# CONFIG_KSU_SUSFS_ENABLE_LOG is not set/# CONFIG_KSU_SUSFS_ENABLE_LOG is not set/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+    sed -i 's/# CONFIG_KSU_SUSFS_HIDE_KSU_SUSFS_SYMBOLS is not set/CONFIG_KSU_SUSFS_HIDE_KSU_SUSFS_SYMBOLS=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+    sed -i 's/# CONFIG_KSU_SUSFS_SPOOF_CMDLINE_OR_BOOTCONFIG is not set/CONFIG_KSU_SUSFS_SPOOF_CMDLINE_OR_BOOTCONFIG=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+    sed -i 's/# CONFIG_KSU_SUSFS_OPEN_REDIRECT is not set/CONFIG_KSU_SUSFS_OPEN_REDIRECT=y/g' "$CUR_DIR"/arch/arm64/configs/exynos9810_temp_defconfig
+
+    KERNEL_NAME="$KERNEL_NAME-ksu"
 }
 
 patch_wifi() {
